@@ -1,66 +1,48 @@
 # ARDUINOPEN
 # Projet Arduino 2019-2020
 
-:Author: Lassiaille Mathieu
+Author: Lassiaille Mathieu
 
-:Email: mlassiaille12@gmail.com
+Email: mlassiaille12@gmail.com
 
-:Date: du 01/12/19
+Date: du 01/12/19
 
-:Revision: version1
+Revision: version1
 
-:License: Public Domain
+License: Public Domain
 
-= Project: Arduinopen
+Project: Arduinopen
 
-Mon 
-
-== Step 1: Installation
-Please describe the steps to install this project.
-
-For example:
-
-1. Open this file
-2. Edit as you like
-3. Release to the World!
-
-== Step 2: Assemble the circuit
-
-Assemble the circuit following the diagram layout.png attached to the sketch
-
-== Step 3: Load the code
-
-Upload the code contained in this sketch on to your board
-
-=== Folder structure
-
-....
- sketch123                => Arduino sketch folder
-  ├── sketch123.ino       => main Arduino file
-  ├── schematics.png      => (optional) an image of the required schematics
-  ├── layout.png          => (optional) an image of the layout
-  └── ReadMe.adoc         => this file
-....
-
-=== License
-This project is released under a {License} License.
-
-=== Contributing
-To contribute to this project please contact LassiailleMathieu https://id.arduino.cc/LassiailleMathieu
-
-=== BOM
-Add the bill of the materials you need for this project.
-
-|===
-| ID | Part name      | Part number | Quantity
-| R1 | 10k Resistor   | 1234-abcd   | 10
-| L1 | Red LED        | 2345-asdf   | 5
-| A1 | Arduino Zero   | ABX00066    | 1
-|===
+#### 1.Description du projet: 
 
 
-=== Help
-This document is written in the _AsciiDoc_ format, a markup language to describe documents.
-If you need help you can search the http://www.methods.co.nz/asciidoc[AsciiDoc homepage]
-or consult the http://powerman.name/doc/asciidoc[AsciiDoc cheatsheet]
+    Mon projet consiste à créer un systeme de verouillage pour n'importe quelle porte, 
+    qui ne s'ouvre que pour une séquence de frappes scécifique, définie préalablement par le propriétaire.
+
+#### 2. Step 1: Mon github
+Sur mon github vous trouverez:
+
+1. Mes rapports de scéances
+2. Mon CDC
+3. Un fichier décrivant les fonctions principales de mon code
+4. Un fichier contenant le code final et complet (pas encore disponible)
+5. Ce fichier !
+
+#### 3. Step 2: Photo du projet final
+
+pas encore disponible
+
+#### 4. Step 3: le code
+
+lien vers le fichier contenant le code final: (pas encore disponible)
+
+#### 5. Contributions
+Référen: Pascal Masson ; http://users.polytech.unice.fr/~pmasson/Enseignement-arduino.htm
+Profile Arduino: https://id.arduino.cc/LassiailleMathieu
+
+Merci à tous ceux qui ont contribué au projet, notament Thomas Prevost ;)
+
+
+
+
 
