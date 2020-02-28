@@ -32,12 +32,12 @@ Sur mon github vous trouverez:
 
 pas encore disponible
 
-#### 4. Step 3: le code
+#### 4. Step 3: Le code
 
 lien vers le fichier contenant le code final: (pas encore disponible)
 
 #### 5. Contributions
-Référen: Pascal Masson ; http://users.polytech.unice.fr/~pmasson/Enseignement-arduino.htm
+Référent: Pascal Masson ; http://users.polytech.unice.fr/~pmasson/Enseignement-arduino.htm
 
 Profile Arduino: https://id.arduino.cc/LassiailleMathieu
 
