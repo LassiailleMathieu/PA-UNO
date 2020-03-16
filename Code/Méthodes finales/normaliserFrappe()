@@ -1,0 +1,63 @@
+/*dans ce code on va supposer qu'on a deja notre tableau 
+avec nos écarts entre les frappes: "tabIntervalEntreFrappes[]"
+ou "tabIntervalEntreFrappesCS[]"
+*/
+
+//Pin
+
+const int Piezo = 0 ; //exemple de port sur lequel sera branché le piezo
+
+//variables de réglages
+
+const int seuil=30 ; //seuil de déclenchement, on veut pas que notre programme enregistre de simple vibrations comme des frappes, il faut donc frapper bien fort pour qu'il s'active
+const int nombreMaxDeFrappes = 5 ; //On donne a notre régleur un nombre max de 15 frappes pour son code secret
+const int tempsMaxDeFrappe = 3500 ; //Son code doit pas durer trop longtemps
+
+//variables globales
+
+int tabIntervalEntreFrappesCS[nombreMaxDeFrappes] = {100 , 200 , 300, 800, 1000} ; //on note les intervalles de temps dans ce tableau, 
+int tabIntervalEntreFrappes[nombreMaxDeFrappes] = {20 , 40 , 60 , 160 , 1000};
+int valeurPiezo ; //on stoque  la valeur du Piezo dans cette variable
+
+long tabFrappe[nombreMaxDeFrappes] ;
+long tabCodeSecret[nombreMaxDeFrappes] ;
+
+void setup(){
+  Serial.begin(9600) ;
+}
+void loop(){
+  normaliserFrappe() ;
+  delay(5000) ;
+}
+
+void normaliserFrappe() {
+
+  int intervalMaxEntreFrappesCS = 0 ;
+  int intervalMaxEntreFrappes = 0 ;
+
+  //on parcour notre tableau de frappe pour trouver l'écart max qui deviendra notre réference
+  for (int i = 0 ; i < (nombreMaxDeFrappes) ; i++) {
+    if ( tabIntervalEntreFrappes[i] > intervalMaxEntreFrappes) {
+      intervalMaxEntreFrappes = tabIntervalEntreFrappes[i] ;
+    }
+    /*if ( tabIntervalEntreFrappesCS[i] > intervalMaxEntreFrappesCS) {
+      intervalMaxEntreFrappesCS = tabIntervalEntreFrappesCS[i] ;
+    }*/
+  }
+  Serial.println("^^^^^^^^^^^^") ;
+  Serial.println(intervalMaxEntreFrappes) ;
+  Serial.println("^^^^^^^^^^^^") ;
+  Serial.println("~~~~~~~~~~~~") ;
+  for (int i = 0; i < (nombreMaxDeFrappes) ; i++) {
+    //tabFrappe[i] = ((tabIntervalEntreFrappes[i] * 100) / intervalMaxEntreFrappes) ;
+    tabFrappe[i] = map(tabIntervalEntreFrappes[i],0,intervalMaxEntreFrappes,0,100) ;
+    Serial.println(String(tabFrappe[i])) ;
+  }
+  Serial.println("~~~~~~~~~~~~") ;
+  delay(3000) ;
+  
+  /* Les tableaux 'tabFrappe[]' et 'tabCodeSecret[]' contiennent  
+   *  maintenant les écarts normalisées.
+   *  Ils sont prêt à etre comparés!
+   */
+}
