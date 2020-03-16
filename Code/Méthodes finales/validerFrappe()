@@ -1,0 +1,52 @@
+/* Ce code compare une frappe au code secret, elle renvoie TRUE si elle lui ressemble et FALSE sinon */
+
+//variables de reglage
+
+const int nombreMaxDeFrappes = 5 ;
+const int differenceLocaleMax = 30 ;
+const int differenceGlobaleMax = 20 ;
+
+//variables globales
+
+long tabFrappe[nombreMaxDeFrappes] = {74 , 77 , 75 , 89 , 100};
+long tabCodeSecret[nombreMaxDeFrappes] = {98 , 97 , 100 , 98 , 0} ;
+
+boolean validerFrappe() 
+
+  int nombreFrappesEssai = 0 ;
+  int nombreFrappesCS = 0 ;
+
+  int differenceDeTempsLocale = 0 ;
+  int differenceDeTempsGlobale = 0 ;
+  
+  //on commence d'abord par contabiliser le nombre de frappe 
+  for (int i=0; i<nombreMaxDeFrappes ; i++) {
+    if (tabFrappe[i] > 0) {
+      nombreFrappesEssai++ ;
+    }
+    if (tabCodeSecret[i] > 0) {
+      nombreFrappesCS++ ;
+    }
+  }
+
+  //on fait le test le plus simple: est ce qu'ils ont le même nombre kkde frappes
+  if (nombreFrappesEssai!=nombreFrappesCS) {
+    return false ;
+  }
+
+  //on verifie chaque frappe individuelle et on calcul l'ecart totale
+  for (int i=0; i<nombreMaxDeFrappes ; i++) {
+    differenceDeTempsLocale = abs(tabCodeSecret[i]-tabFrappe[i]) ;
+    if (differenceDeTempsLocale > differenceLocaleMax ) {
+      return false ;
+    }
+    differenceDeTempsGlobale += differenceDeTempsLocale ;
+  }
+
+  //on regarde si ça verifie le 3eme critère: lecart totale
+  if ((differenceDeTempsGlobale/nombreFrappesCS) > differenceGlobaleMax) {
+    return false ;
+  }
+
+  return true ;
+}
