@@ -1,0 +1,14 @@
+/* Cette fonction sert à ouvrir la porte sans utiliser la librairie servo.h car elle n'est pas compatible avec le reste de mon programme */
+
+void servowrite(int pin, int angle, int microzero, int micro180){
+  // pin pour le servo, angle désiré, microsecondes pour zero degré, microsecondes pour 180 degrée
+  int microvalue= map(angle, 0, 180, microzero, micro180); //map l'angle en microsecondes
+  for (int i = 0; i < 50; i++)   //Send 50 pwm pulses with width microvalue uS
+      {
+        analogWrite(servoPin,255);              //Pulse high for microvalue uS     
+        delayMicroseconds(microvalue);
+        analogWrite(servoPin,0);                //Pulse low for 15mS
+        delay(15);
+       }
+   delay(10);            //Pause
+}
