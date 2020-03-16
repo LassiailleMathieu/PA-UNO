@@ -1,0 +1,72 @@
+//Pin
+
+const int Piezo = A5 ; //exemple de port sur lequel sera branché le piezo
+
+//variables de réglages
+
+const int seuil = 30 ; //seuil de déclenchement, on veut pas que notre programme enregistre de simple vibrations comme des frappes, il faut donc frapper bien fort pour qu'il s'active
+const int nombreMaxDeFrappes = 5 ; //On donne a notre régleur un nombre max de 15 frappes pour son code secret
+const int tempsMaxDeFrappe = 3000 ; //Son code doit pas durer trop longtemps
+
+//variables globales
+
+int tabIntervalEntreFrappesCS[nombreMaxDeFrappes] ; //on note les intervalles de temps dans ce tableau, on les normalise pas encore, (on écrira une fonction dédié a ça plus tard)
+int valeurPiezo ; //on stoque  la valeur du Piezo dans cette variable
+
+void setup() {
+  Serial.begin(9600) ;
+}
+
+
+
+void loop() {
+  valeurPiezo = analogRead(Piezo) ;
+
+  if (seuil <= valeurPiezo) {
+    ecouterFrappeCS() ;
+  }
+}
+
+void ecouterFrappeCS() {
+
+  Serial.println("Ca commence") ;
+
+  //Tout d'abord on remet le tableau a 0
+  for (int i = 0; i < nombreMaxDeFrappes ; i++) {
+    tabIntervalEntreFrappesCS[i] = 0 ;
+  }
+
+  int nombreDeFrappes = 0 ;
+  int tempsDeDebut = millis() ;
+  int tempsPresent = millis() ;
+
+
+  delay(150) ;
+
+
+  do {
+
+    valeurPiezo = analogRead(Piezo) ;//la valeur est stockée
+
+    if (seuil <= valeurPiezo) { //on commence à enregistrer que si le seuil est atteint
+      Serial.println("frappe"); //on indique qu'on a une frappe
+
+      tempsPresent = millis() ; //on enregistre le temps entre le début et la premiere frappe
+      Serial.println(tempsPresent - tempsDeDebut);
+      tabIntervalEntreFrappesCS[ nombreDeFrappes ] = tempsPresent - tempsDeDebut ; // on note cet écart dans la liste
+      nombreDeFrappes++ ; // on incrémente notre nombe de frappe
+
+      tempsDeDebut = tempsPresent ; //on remet la différence a 0ms
+      delay(150) ;
+    }
+    tempsPresent = millis() ;
+
+  } while ( (nombreDeFrappes <= (nombreMaxDeFrappes - 1)) && ((tempsPresent - tempsDeDebut) <= tempsMaxDeFrappe));
+  Serial.println("C'est finiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+  Serial.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+  for (int i = 0 ; i < nombreMaxDeFrappes ; i++) {
+    Serial.println(tabIntervalEntreFrappesCS[i]) ;
+  }
+  Serial.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+}
+
